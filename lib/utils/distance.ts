@@ -25,3 +25,29 @@ export function getBoundingBox(
     maxLng: lng + lngDelta,
   };
 }
+/**
+ * Check if a point is within a given radius of another point.
+ */
+export function isWithinRadius(
+  userLat: number,
+  userLng: number,
+  targetLat: number,
+  targetLng: number,
+  radiusKm: number
+): boolean {
+  const distance = calculateDistance(userLat, userLng, targetLat, targetLng);
+  return distance <= radiusKm;
+}
+
+/**
+ * Filter venues by distance from a user's location.
+ */
+export function filterVenuesByDistance<
+  T extends { address?: { lat?: number | null; lng?: number | null } | null }
+>(
+  venues: T[],
+  userLat: number,
+  userLng: number,
+  radiusKm: number
+): (T & { distance: number })[] {
+  const results: (T & { distance: number })[] = [];
