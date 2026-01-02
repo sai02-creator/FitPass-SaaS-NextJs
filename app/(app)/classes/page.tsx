@@ -1,6 +1,7 @@
 import { getUserPreferences } from "@/lib/actions/profile";
 import { getBoundingBox } from "@/lib/utils/distance";
 import { sanityFetch } from "@/sanity/lib/live";
+import { CATEGORIES_QUERY, USER_BOOKED_SESSION_IDS_QUERY, VENUE_NAME_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { FILTERED_SESSIONS_QUERY, SEARCH_SESSIONS_QUERY } from "@/sanity/lib/queries/sessions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -84,6 +85,32 @@ async function ClassesPage({ searchParams }: PageProps) {
         params: { venueId },
       })
     : Promise.resolve({ data: null });
+
+     const [
+    sessionsResult,
+    categoriesResult,
+    bookedSessionsResult,
+    venueNameResult,
+  ] = await Promise.all([
+    sessionsQuery,
+    sanityFetch({ query: CATEGORIES_QUERY }),
+    userId
+      ? sanityFetch({
+          query: USER_BOOKED_SESSION_IDS_QUERY,
+          params: { clerkId: userId },
+        })
+      : Promise.resolve({ data: [] }),
+    venueNameQuery,
+  ]);
+
+  const allSessions = sessionsResult.data;
+  const categories = categoriesResult.data;
+  const venueName = venueNameResult.data?.name || null;
+  // Filter out null values from booked session IDs
+  const bookedIds: (string | null)[] = bookedSessionsResult.data || [];
+  const filteredBookedIds = bookedIds.filter((id): id is string => id !== null);
+  const bookedSessionIds = new Set(filteredBookedIds);
+
 
 
   return (
