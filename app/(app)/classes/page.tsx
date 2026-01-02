@@ -142,6 +142,12 @@ async function ClassesPage({ searchParams }: PageProps) {
   }
 
   const groupedArray = Array.from(groupedByDay.entries());
+
+  // Extract venues for map display
+  const venuesForMap = sessionsWithDistance
+    .filter((s) => s.venue !== null)
+    .map((s) => s.venue)
+    .filter((v): v is NonNullable<typeof v> => v !== null);
   
 
 
