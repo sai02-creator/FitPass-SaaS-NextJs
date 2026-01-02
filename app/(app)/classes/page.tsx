@@ -1,5 +1,7 @@
 import { getUserPreferences } from "@/lib/actions/profile";
 import { getBoundingBox } from "@/lib/utils/distance";
+import { sanityFetch } from "@/sanity/lib/live";
+import { FILTERED_SESSIONS_QUERY, SEARCH_SESSIONS_QUERY } from "@/sanity/lib/queries/sessions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -73,6 +75,15 @@ async function ClassesPage({ searchParams }: PageProps) {
           maxLng,
         },
       });
+
+
+  // Fetch venue name if venue filter is active
+  const venueNameQuery = venueId
+    ? sanityFetch({
+        query: VENUE_NAME_BY_ID_QUERY,
+        params: { venueId },
+      })
+    : Promise.resolve({ data: null });
 
 
   return (
