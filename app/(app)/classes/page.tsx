@@ -1,3 +1,6 @@
+import { getUserPreferences } from "@/lib/actions/profile";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   searchParams: Promise<{
@@ -34,6 +37,21 @@ async function ClassesPage({ searchParams }: PageProps) {
   }
 
   const { location, searchRadius } = userPreferences;
+
+  // GEOGRAPHIC FILTERING - Two-step approach for performance:
+  //
+  // Step 1 (Database): Calculate a rectangular bounding box from user's location + radius.
+  // This is passed to GROQ to filter at the database level, reducing 100k+ global sessions
+  // down to ~100-500 sessions within the user's general area.
+  //
+  // Step 2 (Client): The filterSessionsByDistance() function further refines results using
+  // the Haversine formula for accurate circular distance calculation. This handles the
+  // corner cases where the rectangular bounding box extends beyond the circular radius.
+  const { minLat, maxLat, minLng, maxLng } = getBoundingBox(
+    location.lat,
+    location.lng,
+    searchRadius,
+  );
 
   return (
     <div>ClassesPage</div>
