@@ -1,10 +1,11 @@
 import { getUserPreferences } from "@/lib/actions/profile";
-import { getBoundingBox } from "@/lib/utils/distance";
+import { filterSessionsByDistance, getBoundingBox } from "@/lib/utils/distance";
 import { sanityFetch } from "@/sanity/lib/live";
 import { CATEGORIES_QUERY, USER_BOOKED_SESSION_IDS_QUERY, VENUE_NAME_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { FILTERED_SESSIONS_QUERY, SEARCH_SESSIONS_QUERY } from "@/sanity/lib/queries/sessions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { format } from "date-fns";
 
 interface PageProps {
   searchParams: Promise<{
@@ -122,6 +123,26 @@ async function ClassesPage({ searchParams }: PageProps) {
       ...s,
       startTime: s.startTime as string,
     }));
+
+    // Get sessions within user's preferred radius, sorted by distance
+  const sessionsWithDistance = filterSessionsByDistance(
+    sessionsForFilter,
+    location.lat,
+    location.lng,
+    searchRadius,
+  );
+
+  // Group sessions by day (already sorted by time from GROQ)
+  type SessionWithDistance = (typeof sessionsWithDistance)[number];
+  const groupedByDay = new Map<string, SessionWithDistance[]>();
+  for (const session of sessionsWithDistance) {
+    const dateKey = format(new Date(session.startTime), "yyyy-MM-dd");
+    const existing = groupedByDay.get(dateKey) || [];
+    groupedByDay.set(dateKey, [...existing, session]);
+  }
+
+  const groupedArray = Array.from(groupedByDay.entries());
+  
 
 
 
