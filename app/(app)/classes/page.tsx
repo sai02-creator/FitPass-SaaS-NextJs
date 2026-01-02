@@ -111,6 +111,18 @@ async function ClassesPage({ searchParams }: PageProps) {
   const filteredBookedIds = bookedIds.filter((id): id is string => id !== null);
   const bookedSessionIds = new Set(filteredBookedIds);
 
+  // Count active filters for badge display
+  const activeFilterCount =
+    (venueId ? 1 : 0) + categoryIds.length + tierLevels.length;
+
+  // Filter sessions that have valid startTime for the distance filter
+  const sessionsForFilter = allSessions
+    .filter((s) => s.startTime !== null)
+    .map((s) => ({
+      ...s,
+      startTime: s.startTime as string,
+    }));
+
 
 
   return (
