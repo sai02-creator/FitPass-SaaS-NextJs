@@ -1,4 +1,5 @@
 import { getUserPreferences } from "@/lib/actions/profile";
+import { getBoundingBox } from "@/lib/utils/distance";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -52,6 +53,27 @@ async function ClassesPage({ searchParams }: PageProps) {
     location.lng,
     searchRadius,
   );
+
+   // Determine which query to use based on search vs filters
+  // Both queries include bounding box params for geographic pre-filtering
+  const sessionsQuery = searchQuery
+    ? sanityFetch({
+        query: SEARCH_SESSIONS_QUERY,
+        params: { searchTerm: searchQuery, minLat, maxLat, minLng, maxLng },
+      })
+    : sanityFetch({
+        query: FILTERED_SESSIONS_QUERY,
+        params: {
+          venueId: venueId || "",
+          categoryIds,
+          tierLevels,
+          minLat,
+          maxLat,
+          minLng,
+          maxLng,
+        },
+      });
+
 
   return (
     <div>ClassesPage</div>
