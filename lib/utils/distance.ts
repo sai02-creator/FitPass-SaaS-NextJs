@@ -1,178 +1,118 @@
-/**
- * Calculate the distance between two points using the Haversine formula.
- * Returns distance in kilometers.
- */
-export function calculateDistance(
-  lat1: number,
-  lng1: number,
-  lat2: number,
-  lng2: number
-): number {
-  const R = 6371; // Earth's radius in kilometers
+// lib/utils/distance.ts
 
-  const dLat = toRadians(lat2 - lat1);
-  const dLng = toRadians(lng2 - lng1);
+type Coords = { lat: number; lng: number };
 
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  return R * c;
+function isNumber(x: unknown): x is number {
+  return typeof x === "number" && Number.isFinite(x);
 }
 
-function toRadians(degrees: number): number {
-  return degrees * (Math.PI / 180);
+function getVenueCoords(session: any): Coords | null {
+  const v = session?.venue;
+  const a = v?.address;
+
+  // Support both:
+  // - venue.address.lat / lng
+  // - venue.address.geo.lat / lng
+  const lat = a?.lat ?? a?.geo?.lat;
+  const lng = a?.lng ?? a?.geo?.lng;
+
+  if (isNumber(lat) && isNumber(lng)) {
+    return { lat, lng };
+  }
+
+  return null;
 }
 
-export interface BoundingBox {
-  minLat: number;
-  maxLat: number;
-  minLng: number;
-  maxLng: number;
-}
-
-/**
- * Calculate a geographic bounding box from a center point and radius.
- *
- * WHY BOUNDING BOX?
- * -----------------
- * The Haversine formula (used in calculateDistance) is accurate but computationally
- * expensive to run on every record in the database. With 100k+ classes globally,
- * fetching all and filtering client-side is too slow.
- *
- * Instead, we use a two-step approach:
- * 1. BOUNDING BOX (fast, database-level): Filter using simple lat/lng comparisons
- *    in GROQ. This creates a rectangular "box" around the user and returns only
- *    sessions within that box (~100-500 results instead of 100k+).
- *
- * 2. HAVERSINE (accurate, client-side): Fine-tune the results using the precise
- *    circular distance calculation. The bounding box is a rectangle inscribed
- *    around the circle, so corners may include locations slightly outside the radius.
- *
- * LATITUDE vs LONGITUDE
- * ---------------------
- * - 1° of latitude ≈ 111 km everywhere on Earth (constant)
- * - 1° of longitude varies by latitude (shrinks toward poles)
- *   At equator: ~111 km, at 45°: ~78 km, at poles: ~0 km
- *   Formula: 111 km × cos(latitude)
- */
 export function getBoundingBox(
   lat: number,
   lng: number,
   radiusKm: number
-): BoundingBox {
-  // Latitude: 1 degree ≈ 111 km (constant worldwide)
-  const latDelta = radiusKm / 111;
+): { minLat: number; maxLat: number; minLng: number; maxLng: number } {
+  const R = 6371; // Earth radius in km
+  const rad = radiusKm / R;
 
-  // Longitude: 1 degree varies by latitude, shrinking toward the poles
-  // At the user's latitude, calculate how many degrees equal the radius
-  const lngDelta = radiusKm / (111 * Math.cos(lat * (Math.PI / 180)));
+  const latRad = (lat * Math.PI) / 180;
+  const lngRad = (lng * Math.PI) / 180;
+
+  const minLat = latRad - rad;
+  const maxLat = latRad + rad;
+
+  const deltaLng = Math.asin(
+    Math.sin(rad) / Math.max(Math.cos(latRad), 1e-12)
+  );
+
+  const minLng = lngRad - deltaLng;
+  const maxLng = lngRad + deltaLng;
 
   return {
-    minLat: lat - latDelta,
-    maxLat: lat + latDelta,
-    minLng: lng - lngDelta,
-    maxLng: lng + lngDelta,
+    minLat: (minLat * 180) / Math.PI,
+    maxLat: (maxLat * 180) / Math.PI,
+    minLng: (minLng * 180) / Math.PI,
+    maxLng: (maxLng * 180) / Math.PI,
   };
 }
 
-/**
- * Check if a point is within a given radius of another point.
- */
-export function isWithinRadius(
-  userLat: number,
-  userLng: number,
-  targetLat: number,
-  targetLng: number,
-  radiusKm: number
-): boolean {
-  const distance = calculateDistance(userLat, userLng, targetLat, targetLng);
-  return distance <= radiusKm;
+function haversineKm(a: Coords, b: Coords): number {
+  const R = 6371; // km
+
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180;
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180;
+
+  const lat1 = (a.lat * Math.PI) / 180;
+  const lat2 = (b.lat * Math.PI) / 180;
+
+  const s1 = Math.sin(dLat / 2);
+  const s2 = Math.sin(dLng / 2);
+
+  const h = s1 * s1 + Math.cos(lat1) * Math.cos(lat2) * s2 * s2;
+
+  return 2 * R * Math.asin(Math.sqrt(h));
 }
 
 /**
- * Filter venues by distance from a user's location.
+ * Filters sessions within radiusKm and adds distance/distanceKm to each.
+ *
+ * ✅ Returns BOTH:
+ * - distance (what your UI types expect)
+ * - distanceKm (handy if other code uses it)
  */
-export function filterVenuesByDistance<
-  T extends { address?: { lat?: number | null; lng?: number | null } | null }
->(
-  venues: T[],
-  userLat: number,
-  userLng: number,
-  radiusKm: number
-): (T & { distance: number })[] {
-  const results: (T & { distance: number })[] = [];
-
-  for (const venue of venues) {
-    const lat = venue.address?.lat;
-    const lng = venue.address?.lng;
-
-    if (lat == null || lng == null) continue;
-
-    if (isWithinRadius(userLat, userLng, lat, lng, radiusKm)) {
-      results.push({
-        ...venue,
-        distance: calculateDistance(userLat, userLng, lat, lng),
-      });
-    }
-  }
-
-  return results.sort((a, b) => a.distance - b.distance);
-}
-
-/**
- * Filter sessions by their venue's distance from a user's location.
- * Sorts by time (primary) then distance (secondary) within each day.
- */
-export function filterSessionsByDistance<
-  T extends {
-    startTime: string;
-    venue?: {
-      address?: { lat?: number | null; lng?: number | null } | null;
-    } | null;
-  }
->(
+export function filterSessionsByDistance<T extends Record<string, any>>(
   sessions: T[],
   userLat: number,
   userLng: number,
   radiusKm: number
-): (T & { distance: number })[] {
-  const results: (T & { distance: number })[] = [];
+): (T & { distance: number; distanceKm: number })[] {
+  const user = { lat: userLat, lng: userLng };
 
-  for (const session of sessions) {
-    const lat = session.venue?.address?.lat;
-    const lng = session.venue?.address?.lng;
+  const withDistance = sessions.map((s) => {
+    const venueCoords = getVenueCoords(s);
+    const distanceKm = venueCoords ? haversineKm(user, venueCoords) : Infinity;
 
-    if (lat == null || lng == null) continue;
-
-    if (isWithinRadius(userLat, userLng, lat, lng, radiusKm)) {
-      results.push({
-        ...session,
-        distance: calculateDistance(userLat, userLng, lat, lng),
-      });
-    }
-  }
-
-  // Sort by time first, then by distance as tiebreaker
-  return results.sort((a, b) => {
-    const timeA = new Date(a.startTime).getTime();
-    const timeB = new Date(b.startTime).getTime();
-    if (timeA !== timeB) return timeA - timeB;
-    return a.distance - b.distance;
+    return {
+      ...s,
+      distance: distanceKm, // ✅ REQUIRED by your UI
+      distanceKm, // optional but useful
+    };
   });
+
+  return withDistance
+    .filter((s) => s.distanceKm <= radiusKm)
+    .sort((a, b) => a.distanceKm - b.distanceKm);
 }
 
 /**
- * Format distance for display.
+ * Formats distance for UI.
  */
-export function formatDistance(distanceKm: number): string {
-  if (distanceKm < 1) {
-    return `${Math.round(distanceKm * 1000)} m`;
+export function formatDistance(km: number): string {
+  if (!Number.isFinite(km)) return "";
+
+  if (km < 1) {
+    return `${Math.round(km * 1000)} m`;
   }
-  return `${distanceKm.toFixed(1)} km`;
+
+  if (km < 10) {
+    return `${km.toFixed(1)} km`;
+  }
+
+  return `${Math.round(km)} km`;
 }
