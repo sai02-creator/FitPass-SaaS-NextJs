@@ -155,7 +155,7 @@ export function ToolCallUI({ toolPart, closeChat }: ToolCallUIProps) {
                 <ResultCard
                   key={key}
                   variant="class"
-                  data={item as unknown as SearchClass}
+                  data={item as SearchClass}
                   onClose={closeChat}
                 />
               );
@@ -165,7 +165,7 @@ export function ToolCallUI({ toolPart, closeChat }: ToolCallUIProps) {
                 <ResultCard
                   key={key}
                   variant="session"
-                  data={item as unknown as ClassSession}
+                  data={item as ClassSession}
                   onClose={closeChat}
                 />
               );
@@ -175,7 +175,7 @@ export function ToolCallUI({ toolPart, closeChat }: ToolCallUIProps) {
                 <ResultCard
                   key={key}
                   variant="booking"
-                  data={item as unknown as UserBooking}
+                  data={item as UserBooking}
                   onClose={closeChat}
                 />
               );
