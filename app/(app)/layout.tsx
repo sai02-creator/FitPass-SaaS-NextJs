@@ -1,4 +1,7 @@
+import { ChatButton } from "@/components/app/chat/ChatButton";
+import { ChatSheet } from "@/components/app/chat/ChatSheet";
 import { AppHeader } from "@/components/app/layout/AppHeader";
+import { AppShell } from "@/components/app/layout/AppShell";
 import { OnboardingGuard } from "@/components/app/onboarding/OnboardingGuard";
 import { ChatStoreProvider } from "@/lib/store/chat-store-provider";
 
@@ -10,8 +13,12 @@ function AppLayout({ children }: { children: React.ReactNode }) {
     <ClerkProvider>
       <ChatStoreProvider>
       <OnboardingGuard>
+        <AppShell>
         <AppHeader />
       {children}
+      </AppShell>
+      <ChatButton />
+      <ChatSheet /> 
       </OnboardingGuard>
       <SanityLive /> 
       </ChatStoreProvider> 

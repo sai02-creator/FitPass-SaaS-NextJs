@@ -43,13 +43,13 @@ export function ActivityCard({ activity, href }: ActivityCardProps) {
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-muted to-muted/50 text-muted-foreground">
+            <div className="flex h-full items-center justify-center bg-linear-to-br from-muted to-muted/50 text-muted-foreground">
               <span className="text-4xl opacity-20">🏃</span>
             </div>
           )}
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
           {/* Tier Badge */}
           <Badge
@@ -70,7 +70,7 @@ export function ActivityCard({ activity, href }: ActivityCardProps) {
         </div>
 
         {/* Content */}
-        <CardContent className="p-4 !px-4">
+        <CardContent className="p-4 px-4">
           <h3 className="line-clamp-1 text-lg font-semibold transition-colors group-hover:text-primary">
             {activity.name || "Untitled Activity"}
           </h3>
