@@ -25,6 +25,9 @@
 
 ---
 
+> Full-stack SaaS fitness booking platform with subscriptions, AI-assisted discovery, and admin-driven content management.
+
+
 ## ✨ Overview
 
 FitPass is a **fitness class booking platform** where users can discover nearby sessions, view venues on a map, subscribe to a tier (Basic / Performance / Champion), and book classes instantly.
