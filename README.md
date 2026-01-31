@@ -9,11 +9,8 @@
 
 <p align="center">
   <a href="YOUR_LIVE_DEMO_URL"><strong>Live Demo</strong></a> •
-  <a href="YOUR_PORTFOLIO_CASE_STUDY_URL"><strong>Case Study</strong></a> •
   <a href="#-features"><strong>Features</strong></a> •
   <a href="#-tech-stack"><strong>Tech Stack</strong></a> •
-  <a href="#-getting-started"><strong>Setup</strong></a> •
-  <a href="#-screenshots--gifs"><strong>GIFs</strong></a>
 </p>
 
 <!-- Badges -->
@@ -117,10 +114,3 @@ This keeps performance solid even with large datasets.
 | Admin dashboard | ![Admin](assets/screenshot-admin.png) |
 
 ---
-
-## 🚀 Getting started
-
-### 1) Clone
-```bash
-git clone YOUR_REPO_URL
-cd fitpass
