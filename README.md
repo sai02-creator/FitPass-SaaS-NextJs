@@ -21,9 +21,6 @@
   <img alt="Vercel" src="https://img.shields.io/badge/Deployed%20on-Vercel-black" />
 </p>
 
-<!-- Hero image / banner -->
-<img src="assets/cover.png" alt="FitPass cover" width="100%" />
-
 </div>
 
 ---
