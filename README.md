@@ -8,7 +8,7 @@
 **Next.js 16 • Sanity • Clerk Billing • Vercel AI • Mapbox • Leaflet**
 
 <p align="center">
-  <a href="YOUR_LIVE_DEMO_URL"><strong>Live Demo</strong></a> •
+  <a href="https://fitpass-saas-nextjs.vercel.app/"><strong>Live Demo</strong></a> •
   <a href="#-features"><strong>Features</strong></a> •
   <a href="#-tech-stack"><strong>Tech Stack</strong></a> •
 </p>
