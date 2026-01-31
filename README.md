@@ -93,42 +93,78 @@ This keeps performance solid even with large datasets.
 ---
 ## 📸 Screenshots
 
-### 1) 🏠 Landing Page
+### 1) 🏠 Landing Page  
+Introduces the FitPass platform and highlights the core value proposition.  
 ![Landing Page](./assets/home.png)
 
-### 2) 🚀 Get Started / Onboarding
+---
+
+### 2) 🚀 Get Started / Onboarding  
+Guides new users through account setup and first-time access.  
 ![Get Started](./assets/getstarted.png)
 
-### 3) 🏋️ Browse Classes
-![Classes](./assets/classes.png)
+---
 
-### 4) 🗂️ Categories & Filters
+### 3) 🏋️ Browse Classes  
+Displays available fitness classes with schedules and tier visibility.  
+![Browse Classes](./assets/classes.png)
+
+---
+
+### 4) 🗂️ Categories & Filters  
+Allows users to filter and discover classes by category and preferences.  
 ![Categories](./assets/categories.png)
 
-### 5) 🧾 Subscription Tiers & Pricing
-![Pricing](./assets/pricing.png)
+---
 
-### 6) 👤 User Profile & Bookings
+### 5) 🧾 Subscription Tiers & Pricing  
+Shows subscription plans with tier-based access rules and pricing.  
+![Subscription Tiers](./assets/pricing.png)
+
+---
+
+### 6) 👤 User Profile & Bookings  
+Enables users to manage their profile, bookings, and upcoming sessions.  
 ![User Profile](./assets/profile.png)
 
-### 7) 🤖 AI Class Assistant
+---
+
+### 7) 🤖 AI Class Assistant  
+Chat-based AI assistant that helps users discover suitable classes.  
 ![AI Class Assistant](./assets/Ai-class-assistant.png)
 
-### 8) 📊 Admin Dashboard
+---
+
+### 8) 📊 Admin Dashboard  
+Provides a high-level overview of platform activity, users, and bookings.  
 ![Admin Dashboard](./assets/admin-dashboard.png)
 
-### 9) 🛠️ Admin – Activities Management
-Manage class templates that can be scheduled across venues, with tier-based access and session visibility.
-![Admin Activities](./assets/activities-admin.png)
+---
 
-### 10) ✏️ Admin – Edit Activity
-![Admin Activity Management](./assets/admin-activity-managment.png)
+### 9) 🛠️ Admin – Activities Management  
+Manage class templates that can be scheduled across venues, with tier-based access and session visibility.  
+![Admin Activities Management](./assets/activities-admin.png)
 
-### 11) ➕ Admin – Add New Session
+---
+
+### 10) ✏️ Admin – Activity Editor  
+Create and edit activities with category, tier, and scheduling rules.  
+![Admin Activity Editor](./assets/admin-activity-managment.png)
+
+---
+
+### 11) ➕ Admin – Add New Session  
+Schedule new class sessions with time, capacity, and venue assignment.  
 ![Add New Session](./assets/Addnewsession-admin.png)
 
-### 12) 🗺️ Admin – Create New Venue
-![Create New Venue](./assets/createnewvenue.png)
+---
 
-### 13) 🧠 Sanity Studio
+### 12) 🗺️ Admin – Venue Management  
+Create and manage fitness venues with location and capacity details.  
+![Venue Management](./assets/createnewvenue.png)
+
+---
+
+### 13) 🧠 Sanity Studio  
+Real-time CMS used by admins to manage content, activities, and platform data.  
 ![Sanity Studio](./assets/studio-admin.png)
