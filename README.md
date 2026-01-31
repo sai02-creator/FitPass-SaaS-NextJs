@@ -93,28 +93,6 @@ This keeps performance solid even with large datasets.
 ---
 ## 📸 Screenshots
 
-### 📍 Location-Based Discovery
-Discover nearby fitness classes using radius-based search and an interactive map.
-![Map Discovery](assets/public-map-discovery.png)
-
-### 🏋️ Activity Listings
-Browse activities with tier-based access rules and session availability.
-![Activity List](assets/public-activity-list.png)
-
-### 📅 Booking Flow
-Simple end-to-end booking flow from discovery to confirmation.
-![Booking Flow](assets/public-booking-flow.png)
-
-### 🧾 Subscription Tiers
-Tier-based subscriptions (Basic, Performance, Champion) with access control.
-![Subscription Tiers](assets/user-subscription-tiers.png)
-
-### 🤖 AI Class Assistant
-Chat-based AI assistant that helps users discover suitable classes.
-![AI Assistant](assets/ai-class-assistant-popup.png)
-
-### 🛠️ Admin – Activity Management
-Admin dashboard for managing activities, sessions, venues, and tiers.
-![Admin Activities](assets/admin-activities-management.png)
-
-📂 **More screenshots available in the [`/assets`](./assets) folder**
+### 🛠️ Admin – Activities Management
+Manage class templates that can be scheduled across venues, with tier-based access and session visibility.
+![Admin Activities Management](assets/admin-activities-management.png)
