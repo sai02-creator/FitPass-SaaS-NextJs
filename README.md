@@ -10,7 +10,7 @@
 <p align="center">
   <a href="https://fitpass-saas-nextjs.vercel.app/"><strong>Live Demo</strong></a> •
   <a href="#-features"><strong>Features</strong></a> •
-  <a href="#-tech-stack"><strong>Tech Stack</strong></a> •
+  <a href="#-tech-stack"><strong>Tech Stack</strong></a>
 </p>
 
 <!-- Badges -->
@@ -35,13 +35,17 @@ It includes:
 - **AI assistant** for class discovery (chat-based)
 - **Admin dashboard** + **Sanity Studio**
 
-> ✅ Built by **YOU** (not a clone) — inspired by tutorial concepts, implemented and customised end-to-end.
+---
+
+## 🎯 Why I built this
+
+I built FitPass to practice real-world SaaS patterns including subscription billing, geo-based search, AI-assisted discovery, and admin-driven content management — all within a single production-style Next.js application.
+
+The focus was on clean architecture, scalability, and patterns transferable to real client and production projects.
 
 ---
 
 ## 🎬 Demo
-
-> Add 1–3 short GIFs (best is 6–12 seconds each)
 
 <div align="center">
   <img src="assets/demo-search.gif" width="32%" alt="Search classes" />
@@ -49,7 +53,7 @@ It includes:
   <img src="assets/demo-admin.gif" width="32%" alt="Admin dashboard" />
 </div>
 
-**Try it:** YOUR_LIVE_DEMO_URL
+**Live demo:** https://fitpass-saas-nextjs.vercel.app/
 
 ---
 
@@ -70,6 +74,8 @@ It includes:
 ---
 
 ## 🧠 How it works
+
+This architecture mirrors real-world SaaS patterns used in production booking and marketplace platforms.
 
 ### Geographic filtering (fast + accurate)
 1) **Bounding box pre-filter** reduces the dataset (fast DB query)  
@@ -99,15 +105,3 @@ This keeps performance solid even with large datasets.
 
 ---
 
-## 📸 Screenshots & GIFs
-
-> Put images in `/assets` and keep filenames short.
-
-| Feature | Preview |
-|--------|---------|
-| Home / Discovery | ![Discovery](assets/screenshot-discovery.png) |
-| Map view | ![Map](assets/screenshot-map.png) |
-| Booking flow | ![Booking](assets/screenshot-booking.png) |
-| Admin dashboard | ![Admin](assets/screenshot-admin.png) |
-
----
