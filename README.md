@@ -93,6 +93,39 @@ This keeps performance solid even with large datasets.
 ---
 ## 📸 Screenshots
 
-### 🛠️ Admin – Activities Management
+### 1) 🏠 Landing Page
+![Landing Page](./assets/landing.png)
+
+### 2) 📍 Location-Based Discovery (Radius + Map)
+![Map Discovery](./assets/map-discovery.png)
+
+### 3) 🏋️ Activity Listings
+![Activity Listings](./assets/activity-list.png)
+
+### 4) 🏢 Venue / Session Details
+![Venue Details](./assets/venue-details.png)
+
+### 5) 📅 Booking Flow
+![Booking Flow](./assets/booking-flow.png)
+
+### 6) 🧾 Subscription Tiers / Billing
+![Subscription Tiers](./assets/subscription-tiers.png)
+
+### 7) 🤖 AI Class Assistant
+![AI Assistant](./assets/ai-assistant.png)
+
+### 8) 📊 Admin Dashboard
+![Admin Dashboard](./assets/admin-dashboard.png)
+
+### 9) 🛠️ Admin – Activities Management
 Manage class templates that can be scheduled across venues, with tier-based access and session visibility.
 ![Admin Activities Management](./assets/activities-admin.png)
+
+### 10) ✏️ Admin – Edit Activity (Dance Cardio)
+![Admin Edit Activity](./assets/admin-activity-dance-cardio.png)
+
+### 11) 🗺️ Admin – Venues Management
+![Admin Venues](./assets/admin-venues.png)
+
+### 12) 🧠 Sanity Studio
+![Sanity Studio](./assets/sanity-studio.png)
