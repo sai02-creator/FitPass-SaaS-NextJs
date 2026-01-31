@@ -94,38 +94,41 @@ This keeps performance solid even with large datasets.
 ## 📸 Screenshots
 
 ### 1) 🏠 Landing Page
-![Landing Page](./assets/landing.png)
+![Landing Page](./assets/home.png)
 
-### 2) 📍 Location-Based Discovery (Radius + Map)
-![Map Discovery](./assets/map-discovery.png)
+### 2) 🚀 Get Started / Onboarding
+![Get Started](./assets/getstarted.png)
 
-### 3) 🏋️ Activity Listings
-![Activity Listings](./assets/activity-list.png)
+### 3) 🏋️ Browse Classes
+![Classes](./assets/classes.png)
 
-### 4) 🏢 Venue / Session Details
-![Venue Details](./assets/venue-details.png)
+### 4) 🗂️ Categories & Filters
+![Categories](./assets/categories.png)
 
-### 5) 📅 Booking Flow
-![Booking Flow](./assets/booking-flow.png)
+### 5) 🧾 Subscription Tiers & Pricing
+![Pricing](./assets/pricing.png)
 
-### 6) 🧾 Subscription Tiers / Billing
-![Subscription Tiers](./assets/subscription-tiers.png)
+### 6) 👤 User Profile & Bookings
+![User Profile](./assets/profile.png)
 
 ### 7) 🤖 AI Class Assistant
-![AI Assistant](./assets/ai-assistant.png)
+![AI Class Assistant](./assets/Ai-class-assistant.png)
 
 ### 8) 📊 Admin Dashboard
 ![Admin Dashboard](./assets/admin-dashboard.png)
 
 ### 9) 🛠️ Admin – Activities Management
 Manage class templates that can be scheduled across venues, with tier-based access and session visibility.
-![Admin Activities Management](./assets/activities-admin.png)
+![Admin Activities](./assets/activities-admin.png)
 
-### 10) ✏️ Admin – Edit Activity (Dance Cardio)
-![Admin Edit Activity](./assets/admin-activity-dance-cardio.png)
+### 10) ✏️ Admin – Edit Activity
+![Admin Activity Management](./assets/admin-activity-managment.png)
 
-### 11) 🗺️ Admin – Venues Management
-![Admin Venues](./assets/admin-venues.png)
+### 11) ➕ Admin – Add New Session
+![Add New Session](./assets/Addnewsession-admin.png)
 
-### 12) 🧠 Sanity Studio
-![Sanity Studio](./assets/sanity-studio.png)
+### 12) 🗺️ Admin – Create New Venue
+![Create New Venue](./assets/createnewvenue.png)
+
+### 13) 🧠 Sanity Studio
+![Sanity Studio](./assets/studio-admin.png)
