@@ -1,40 +1,126 @@
- HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- =========================================================
+ FITPASS README — polished GitHub style
+========================================================== -->
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+# FitPass — Fitness Class Booking Platform 🏋️‍♂️🗺️🤖  
+**Next.js 16 • Sanity • Clerk Billing • Vercel AI • Mapbox • Leaflet**
 
+<p align="center">
+  <a href="YOUR_LIVE_DEMO_URL"><strong>Live Demo</strong></a> •
+  <a href="YOUR_PORTFOLIO_CASE_STUDY_URL"><strong>Case Study</strong></a> •
+  <a href="#-features"><strong>Features</strong></a> •
+  <a href="#-tech-stack"><strong>Tech Stack</strong></a> •
+  <a href="#-getting-started"><strong>Setup</strong></a> •
+  <a href="#-screenshots--gifs"><strong>GIFs</strong></a>
+</p>
+
+<!-- Badges -->
+<p align="center">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Ready-blue" />
+  <img alt="License" src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-orange" />
+  <img alt="Vercel" src="https://img.shields.io/badge/Deployed%20on-Vercel-black" />
+</p>
+
+<!-- Hero image / banner -->
+<img src="assets/cover.png" alt="FitPass cover" width="100%" />
+
+</div>
+
+---
+
+## ✨ Overview
+
+FitPass is a **fitness class booking platform** where users can discover nearby sessions, view venues on a map, subscribe to a tier (Basic / Performance / Champion), and book classes instantly.
+
+It includes:
+- **Location-first discovery** (travel radius + map view)
+- **Subscription tiers** with access rules
+- **AI assistant** for class discovery (chat-based)
+- **Admin dashboard** + **Sanity Studio**
+
+> ✅ Built by **YOU** (not a clone) — inspired by tutorial concepts, implemented and customised end-to-end.
+
+---
+
+## 🎬 Demo
+
+> Add 1–3 short GIFs (best is 6–12 seconds each)
+
+<div align="center">
+  <img src="assets/demo-search.gif" width="32%" alt="Search classes" />
+  <img src="assets/demo-booking.gif" width="32%" alt="Book a class" />
+  <img src="assets/demo-admin.gif" width="32%" alt="Admin dashboard" />
+</div>
+
+**Try it:** YOUR_LIVE_DEMO_URL
+
+---
+
+## ✅ Features
+
+### For Users
+- 📍 **Location-based discovery** (radius + map)
+- 🧾 **Subscriptions** (3 tiers + free trial support)
+- 📅 **Easy booking flow** (browse → book → manage)
+- 🗺️ **Interactive map** for venues and sessions
+- 🤖 **AI class assistant** for recommendations
+
+### For Admin
+- 🧠 **Sanity Studio** content management
+- 🧾 Manage activities, venues, sessions, tiers
+- 📊 Simple dashboard metrics (users, bookings, trends)
+
+---
+
+## 🧠 How it works
+
+### Geographic filtering (fast + accurate)
+1) **Bounding box pre-filter** reduces the dataset (fast DB query)  
+2) **Haversine distance** applies the final circular radius filter  
+
+This keeps performance solid even with large datasets.
+
+### Tier access control
+- **Basic** → Basic-only activities  
+- **Performance** → Basic + Performance  
+- **Champion** → All tiers (VIP)
+
+---
+
+## 🧰 Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Auth + Billing:** Clerk
+- **CMS / Database:** Sanity (real-time SDK)
+- **AI:** Vercel AI Gateway + AI SDK (tooling)
+- **Maps:** Leaflet + Mapbox autocomplete
+- **State:** Zustand
+- **UI:** Tailwind + shadcn/ui
+- **Validation:** Zod
+- **Deployment:** Vercel
+
+---
+
+## 📸 Screenshots & GIFs
+
+> Put images in `/assets` and keep filenames short.
+
+| Feature | Preview |
+|--------|---------|
+| Home / Discovery | ![Discovery](assets/screenshot-discovery.png) |
+| Map view | ![Map](assets/screenshot-map.png) |
+| Booking flow | ![Booking](assets/screenshot-booking.png) |
+| Admin dashboard | ![Admin](assets/screenshot-admin.png) |
+
+---
+
+## 🚀 Getting started
+
+### 1) Clone
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# FitPass-SaaS-NextJs
->>>>>>> e9951d48377dbdfafd2662e624cc960902bc6f74
+git clone YOUR_REPO_URL
+cd fitpass
