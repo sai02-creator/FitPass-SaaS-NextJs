@@ -95,4 +95,4 @@ This keeps performance solid even with large datasets.
 
 ### 🛠️ Admin – Activities Management
 Manage class templates that can be scheduled across venues, with tier-based access and session visibility.
-![Admin Activities Management](assets/activities-admin.png)
+![Admin Activities Management](./assets/activities-admin.png)
