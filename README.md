@@ -43,19 +43,6 @@ I built FitPass to practice real-world SaaS patterns including subscription bill
 
 The focus was on clean architecture, scalability, and patterns transferable to real client and production projects.
 
----
-
-## 🎬 Demo
-
-<div align="center">
-  <img src="assets/demo-search.gif" width="32%" alt="Search classes" />
-  <img src="assets/demo-booking.gif" width="32%" alt="Book a class" />
-  <img src="assets/demo-admin.gif" width="32%" alt="Admin dashboard" />
-</div>
-
-**Live demo:** https://fitpass-saas-nextjs.vercel.app/
-
----
 
 ## ✅ Features
 
