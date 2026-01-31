@@ -23,9 +23,10 @@
 
 </div>
 
+> Full-stack SaaS fitness booking platform with subscriptions, AI-assisted discovery, and admin-driven content management.
+
 ---
 
-> Full-stack SaaS fitness booking platform with subscriptions, AI-assisted discovery, and admin-driven content management.
 
 
 ## ✨ Overview
